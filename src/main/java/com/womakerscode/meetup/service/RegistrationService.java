@@ -1,8 +1,8 @@
 package com.womakerscode.meetup.service;
 
-public class RegistrationService {
+import com.womakerscode.meetup.model.entity.Registration;
 
-    void A() {
+public interface RegistrationService {
 
-    }
+    Registration save(Registration any);
 }

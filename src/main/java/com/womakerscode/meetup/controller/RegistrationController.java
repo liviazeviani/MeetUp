@@ -17,7 +17,5 @@ public class RegistrationController {
     private RegistrationService registrationService;
     private ModelMapper modelMapper;
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public RegistrationDTO create (@R)
+
 }

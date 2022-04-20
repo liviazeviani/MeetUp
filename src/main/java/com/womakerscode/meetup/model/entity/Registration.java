@@ -21,7 +21,7 @@ public class Registration {
     //Dados da pessoa que vai se registrar na aplicação
 
     @Id //persistir o id, elemento único da tabela
-    @Column(name = "registration_id") //o nome da tabela, como ela vai estar no banco de dados
+    @Column(name = "registration_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY) //id gera um valor por identidade
     private long id;
 
