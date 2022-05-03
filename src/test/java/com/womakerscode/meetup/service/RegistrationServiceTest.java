@@ -11,6 +11,12 @@ import org.mockito.Mockito;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import java.util.Optional;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
+
 @ExtendWith(SpringExtension.class)
 @ActiveProfiles("Test")
 public class RegistrationServiceTest {
@@ -22,9 +28,8 @@ public class RegistrationServiceTest {
 
     @BeforeEach
     public void setUp(){
-        this.registrationService = new RegistrationServiceImpl(registrationRepository) {
+        this.registrationService = new RegistrationServiceImpl(registrationRepository); {
         }
-
     }
 
     @Test
@@ -40,7 +45,58 @@ public class RegistrationServiceTest {
 
         Registration savedRegistration = registrationService.save(registration);
 
+        // assert
+        assertThat(savedRegistration.getId()).isEqualTo(101);
+        assertThat(savedRegistration.getName()).isEqualTo("Lívia Pavini Zeviani");
+        assertThat(savedRegistration.getDateOfRegistration()).isEqualTo("05/04/2022");
+        assertThat(savedRegistration.getRegistration()).isEqualTo("001");
+
+    }
+
+//    @Test
+//    @DisplayName("Should get an Registration by Id")
+//    public void getByRegistrationIdTest() {
+//
+//        // cenario
+//        Integer id = 11;
+//        Registration registration = createValidRegistration();
+//        registration.setId(id);
+//        Mockito.when(registrationRepository.findById(id)).thenReturn(Optional.of(registration));
+//
+//
+//        // execucao
+//        Optional<Registration> foundRegistration = registrationService.getRegistrationById(id);
+//
+//        assertThat(foundRegistration.isPresent()).isTrue();
+//        assertThat(foundRegistration.get().getId()).isEqualTo(id);
+//        assertThat(foundRegistration.get().getName()).isEqualTo(registration.getName());
+//        assertThat(foundRegistration.get().getDateOfRegistration()).isEqualTo(registration.getDateOfRegistration());
+//        assertThat(foundRegistration.get().getRegistration()).isEqualTo(registration.getRegistration());
+//
+//    }
+//
+//    @Test
+//    @DisplayName("Should delete an registration")
+//    public void deleteRegistrationTest() {
+//
+//        Registration registration = Registration.builder().id(11).build();
+//
+//        assertDoesNotThrow(() -> registrationService.delete(registration));
+//
+//        Mockito.verify(registrationRepository, Mockito.times(1)).delete(registration);
+//    }
+
+    private Registration createValidRegistration() {
+        return Registration.builder()
+                .id(101)
+                .name("Lívia Pavini Zeviani")
+                .dateOfRegistration("05/04/2022")
+                .registration("001")
+                .build();
+    }
+
     }
 
 
-}
+
+

@@ -5,11 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -20,17 +18,20 @@ public class Registration {
 
     //Dados da pessoa que vai se registrar na aplicação
 
-    @Id //persistir o id, elemento único da tabela
+    @Id
     @Column(name = "registration_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //id gera um valor por identidade
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "person_name")
     private String name;
 
     @Column(name = "date_of_registration")
-    private LocalDate dateRegistration;
+    private String dateOfRegistration;
 
     @Column
     private String registration;
+
+    @OneToMany(mappedBy = "registration")
+    private List<Meetup> meetups;
 }
