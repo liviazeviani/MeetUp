@@ -1,8 +1,10 @@
 package com.womakerscode.meetup.service;
 
+import com.womakerscode.meetup.exception.BusinessException;
 import com.womakerscode.meetup.model.entity.Registration;
 import com.womakerscode.meetup.repository.RegistrationRepository;
 import com.womakerscode.meetup.service.impl.RegistrationServiceImpl;
+import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -95,7 +97,23 @@ public class RegistrationServiceTest {
                 .build();
     }
 
+    @Test
+    @DisplayName("Should throw business exception when" +
+            "try to save new registration w/ registration duplicated")
+    public void shouldNotSavedRegistrationDuplicated(){
+
+        Registration registration = createValidRegistration();
+        Mockito.when(registrationRepository.existsByRegistration(Mockito.any())).thenReturn(true);
+
+        Throwable exception = Assertions.catchThrowable( () -> registrationService.save(registration));
+        assertThat(exception)
+                .isInstanceOf(BusinessException.class)
+                .hasMessage("Registration was alredy created");
+
+        Mockito.verify(registrationRepository, Mockito.never()).save(registration);
     }
+
+}
 
 
 
