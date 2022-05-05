@@ -5,7 +5,7 @@ import com.womakerscode.meetup.model.entity.Registration;
 import com.womakerscode.meetup.repository.RegistrationRepository;
 import com.womakerscode.meetup.service.impl.RegistrationServiceImpl;
 import org.assertj.core.api.Assertions;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -55,38 +55,38 @@ public class RegistrationServiceTest {
 
     }
 
-//    @Test
-//    @DisplayName("Should get an Registration by Id")
-//    public void getByRegistrationIdTest() {
-//
-//        // cenario
-//        Integer id = 11;
-//        Registration registration = createValidRegistration();
-//        registration.setId(id);
-//        Mockito.when(registrationRepository.findById(id)).thenReturn(Optional.of(registration));
-//
-//
-//        // execucao
-//        Optional<Registration> foundRegistration = registrationService.getRegistrationById(id);
-//
-//        assertThat(foundRegistration.isPresent()).isTrue();
-//        assertThat(foundRegistration.get().getId()).isEqualTo(id);
-//        assertThat(foundRegistration.get().getName()).isEqualTo(registration.getName());
-//        assertThat(foundRegistration.get().getDateOfRegistration()).isEqualTo(registration.getDateOfRegistration());
-//        assertThat(foundRegistration.get().getRegistration()).isEqualTo(registration.getRegistration());
-//
-//    }
-//
-//    @Test
-//    @DisplayName("Should delete an registration")
-//    public void deleteRegistrationTest() {
-//
-//        Registration registration = Registration.builder().id(11).build();
-//
-//        assertDoesNotThrow(() -> registrationService.delete(registration));
-//
-//        Mockito.verify(registrationRepository, Mockito.times(1)).delete(registration);
-//    }
+    @Test
+    @DisplayName("Should get an Registration by Id")
+    public void getByRegistrationIdTest() {
+
+        // cenario
+        Integer id = 11;
+        Registration registration = createValidRegistration();
+        registration.setId(id);
+        Mockito.when(registrationRepository.findById(id)).thenReturn(Optional.of(registration));
+
+
+        // execucao
+        Optional<Registration> foundRegistration = registrationService.getRegistrationById(id);
+
+        assertThat(foundRegistration.isPresent()).isTrue();
+        assertThat(foundRegistration.get().getId()).isEqualTo(id);
+        assertThat(foundRegistration.get().getName()).isEqualTo(registration.getName());
+        assertThat(foundRegistration.get().getDateOfRegistration()).isEqualTo(registration.getDateOfRegistration());
+        assertThat(foundRegistration.get().getRegistration()).isEqualTo(registration.getRegistration());
+
+    }
+
+    @Test
+    @DisplayName("Should delete an registration")
+    public void deleteRegistrationTest() {
+
+        Registration registration = Registration.builder().id(11).build();
+
+        assertDoesNotThrow(() -> registrationService.delete(registration));
+
+        Mockito.verify(registrationRepository, Mockito.times(1)).delete(registration);
+    }
 
     private Registration createValidRegistration() {
         return Registration.builder()
