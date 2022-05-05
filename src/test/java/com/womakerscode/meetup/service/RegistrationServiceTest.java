@@ -108,7 +108,7 @@ public class RegistrationServiceTest {
         Throwable exception = Assertions.catchThrowable( () -> registrationService.save(registration));
         assertThat(exception)
                 .isInstanceOf(BusinessException.class)
-                .hasMessage("Registration was alredy created");
+                .hasMessage("Registration already created");
 
         Mockito.verify(registrationRepository, Mockito.never()).save(registration);
     }
