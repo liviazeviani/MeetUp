@@ -23,7 +23,7 @@ public class RegistrationDTO {
     private String name;
 
     @NotEmpty
-    private LocalDate dateRegistration;
+    private String dateOfRegistration;
 
     @NotEmpty
     private String registration;
