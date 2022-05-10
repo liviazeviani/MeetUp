@@ -56,7 +56,7 @@ public class RegistrationControllerTest {
         // cenario
         RegistrationDTO registrationDTOBuilder = createNewRegistration();
         Registration savedRegistration = Registration.builder().id(101)
-                .name("Lívia Pavini Zeviani").dateOfRegistration("05/04/2022").registration("001").build();
+                .name("Ana Neri").dateOfRegistration("10/10/2021").registration("001").build();
 
 
         // execucao
@@ -217,8 +217,8 @@ public class RegistrationControllerTest {
         Registration updatedRegistration =
                 Registration.builder()
                         .id(id)
-                        .name("Lívia Pavini Zeviani")
-                        .dateOfRegistration("05/04/2022")
+                        .name("Ana Neri")
+                        .dateOfRegistration("10/10/2021")
                         .registration("323")
                         .build();
 
@@ -296,6 +296,6 @@ public class RegistrationControllerTest {
 
 
     private RegistrationDTO createNewRegistration() {
-        return  RegistrationDTO.builder().id(101).name("Lívia Pavini Zeviani").dateOfRegistration("05/04/2022").registration("001").build();
+        return  RegistrationDTO.builder().id(101).name("Ana Neri").dateOfRegistration("10/10/2021").registration("001").build();
     }
 }
